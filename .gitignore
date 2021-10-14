@@ -1,0 +1,7 @@
+*.o
+*.out
+*.obj
+*.ko
+*.elf
+*.lib
+*.run
