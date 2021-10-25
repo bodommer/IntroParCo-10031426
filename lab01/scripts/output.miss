@@ -1,0 +1,13 @@
+../src/Array_malloc.c:26:3: missed: couldn't vectorize loop
+../src/Array_malloc.c:27:17: missed: statement clobbers memory: _9 = rand ();
+/usr/include/stdlib.h:363:16: missed: statement clobbers memory: _48 = strtol (_1, 0B, 10);
+../src/Array_malloc.c:16:14: missed: statement clobbers memory: arr1_29 = malloc (_3);
+../src/Array_malloc.c:17:14: missed: statement clobbers memory: arr2_31 = malloc (_3);
+../src/Array_malloc.c:18:16: missed: statement clobbers memory: result_33 = malloc (_3);
+../src/Array_malloc.c:19:8: missed: statement clobbers memory: _4 = time (0B);
+../src/Array_malloc.c:19:2: missed: statement clobbers memory: srand (_5);
+../src/Array_malloc.c:23:11: missed: statement clobbers memory: start_37 = clock ();
+../src/Array_malloc.c:27:17: missed: statement clobbers memory: _9 = rand ();
+../src/Array_malloc.c:28:17: missed: statement clobbers memory: _11 = rand ();
+../src/Array_malloc.c:35:9: missed: statement clobbers memory: end_39 = clock ();
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:107:10: missed: statement clobbers memory: __printf_chk (1, "%d;%f\n", _49, time_used_40);

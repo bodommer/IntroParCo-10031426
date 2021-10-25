@@ -1,0 +1,44 @@
+../src/Scan_openmp.c: In function ‘main’:
+../src/Scan_openmp.c:47:23: error: ‘simd’ is not valid for ‘#pragma omp parallel’
+   47 |  #pragma omp parallel simd
+      |                       ^~~~
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
+Computing XXX using 2 threads per 
+Computing XXX using 4 threads per 
+Computing XXX using 8 threads per 
+Computing XXX using 16 threads per 
