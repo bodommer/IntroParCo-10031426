@@ -1,0 +1,6 @@
+In file included from ../src/Thread_num.c:7:
+../src/Thread_num.c: In function ‘main’:
+../src/Thread_num.c:20:11: error: ‘false’ undeclared (first use in this function)
+   20 |    assert(false);
+      |           ^~~~~
+../src/Thread_num.c:20:11: note: each undeclared identifier is reported only once for each function it appears in

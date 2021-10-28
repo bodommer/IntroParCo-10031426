@@ -1,0 +1,4 @@
+../src/Thread_num.c: In function ‘main’:
+../src/Thread_num.c:11:3: warning: implicit declaration of function ‘sleep’ [-Wimplicit-function-declaration]
+   11 |   sleep(3);
+      |   ^~~~~

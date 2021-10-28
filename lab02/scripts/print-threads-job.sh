@@ -16,3 +16,5 @@ gcc ../src/thread_count.c -o ../src/thread_count.out -fopenmp
 export OMP_NUM_THREADS=16
 
 ../src/thread_count.out >> thread_count.out
+
+nproc --all >> thread_count.out
