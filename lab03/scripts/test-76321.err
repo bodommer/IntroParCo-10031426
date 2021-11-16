@@ -1,3 +1,0 @@
-Thread_num.out: ../src/Thread_num.c:22: main: Assertion `false' failed.
-Thread_num.out: ../src/Thread_num.c:22: main: Assertion `false' failed.
-/var/lib/slurm-llnl/slurmd/job76321/slurm_script: line 22: 3815269 Aborted                 (core dumped) ../src/make/Thread_num.out > ../experiments/threads_id.out

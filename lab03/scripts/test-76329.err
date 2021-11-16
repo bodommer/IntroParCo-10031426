@@ -1,5 +1,0 @@
-../src/Thread_num.c: In function ‘print_affinity’:
-../src/Thread_num.c:23:40: error: ‘thread_num’ undeclared (first use in this function)
-   23 |     printf("sched_getaffinity %d  = ", thread_num);
-      |                                        ^~~~~~~~~~
-../src/Thread_num.c:23:40: note: each undeclared identifier is reported only once for each function it appears in
