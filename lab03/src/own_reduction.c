@@ -23,6 +23,8 @@ int main(int argc, char* argv[]) {
 
 	clock_t time1;
 	clock_t time2;
+	double average = 0;
+	int repetitions = 5;
 
 	if (argc < 2) {
 		printf("Insufficient argument count!");
@@ -77,52 +79,64 @@ int main(int argc, char* argv[]) {
 	// set to -1 to switch debugging off
 	int analyzed_thread = -1;
 
-	time2 = clock();
-	#pragma omp parallel shared(result, iterations, arr)
-	{
-		thread_id = omp_get_thread_num();
-	
-		for (int iter = 0; iter < iterations; iter++) {
-			int stride = pow(2, iter);
-			int step = nthreads * stride;
-			if (thread_id == analyzed_thread) {
-				printf("Step: %d, nthreads: %d, stride: %d\n", step, nthreads, stride);
+	for (int rep = 0; rep < repetitions; rep++) {
+		// reset array
+		for (int i = 1; i < iterations; i++) {
+			for (int j = 0; j < size; j++) {
+				arr[i][j] = 0;
 			}
-
-			for (int k=0; (k + 1) * step + thread_id < size; k = k + 2) {
-				int left_index = k * step + thread_id;
-				int right_index = (k + 1) * step  + thread_id;
+		}
+		time2 = clock();
+		#pragma omp parallel shared(result, iterations, arr)
+		{
+			thread_id = omp_get_thread_num();
+		
+			for (int iter = 0; iter < iterations; iter++) {
+				int stride = pow(2, iter);
+				int step = nthreads * stride;
 				if (thread_id == analyzed_thread) {
-					printf("Summing %d:%d and %d:%d into %d:%d\n", iter, left_index, iter, right_index, iter+1, left_index);
+					printf("Step: %d, nthreads: %d, stride: %d\n", step, nthreads, stride);
 				}
-				if (iter == iterations - 1) {
-					if (thread_id == analyzed_thread) {
-						printf("last iteration: %d:%d + %d:%d\n", iter, left_index, iter, right_index);
-					}
-					int r = arr[iter][left_index] + arr[iter][right_index];
 
+				for (int k=0; (k + 1) * step + thread_id < size; k = k + 2) {
+					int left_index = k * step + thread_id;
+					int right_index = (k + 1) * step  + thread_id;
 					if (thread_id == analyzed_thread) {
-						printf("Last result for thread %d: %d\n", thread_id, r);
+						printf("Summing %d:%d and %d:%d into %d:%d\n", iter, left_index, iter, right_index, iter+1, left_index);
+					}
+					if (iter == iterations - 1) {
+						if (thread_id == analyzed_thread) {
+							printf("last iteration: %d:%d + %d:%d\n", iter, left_index, iter, right_index);
+						}
+						int r = arr[iter][left_index] + arr[iter][right_index];
+
+						if (thread_id == analyzed_thread) {
+							printf("Last result for thread %d: %d\n", thread_id, r);
+						}
+						
+						#pragma omp critical
+						result += r;
+					} else {
+						arr[iter+1][left_index] =  arr[iter][left_index] + arr[iter][right_index];
 					}
 					
-					#pragma omp critical
-					result += r;
-				} else {
-					arr[iter+1][left_index] =  arr[iter][left_index] + arr[iter][right_index];
+					if (thread_id == analyzed_thread && iter < iterations - 2) {
+						printf("%d + %d = %d\n", arr[iter][left_index], arr[iter][right_index], arr[iter+1][left_index]);
+					}
 				}
-				
-				if (thread_id == analyzed_thread && iter < iterations - 2) {
-					printf("%d + %d = %d\n", arr[iter][left_index], arr[iter][right_index], arr[iter+1][left_index]);
-				}
+		//		print_arr(arr, iterations, size);
 			}
-	//		print_arr(arr, iterations, size);
 		}
+		time2 = clock() - time2;
+		average = average + ((double) time2) / CLOCKS_PER_SEC;
+		sleep(1);
 	}
-	time2 = clock() - time2;
+
+	
 
 	//printf("Sequential result: %d\nParallel result: %d\n", res, result);
 
-        printf("%d,%f,%f\n", size, ((double) time1)/CLOCKS_PER_SEC, ((double) time2)/CLOCKS_PER_SEC);
+        printf("%d,%f,%f\n", size, ((double) time1)/CLOCKS_PER_SEC, average/repetitions);
 
 	return 0;
 }

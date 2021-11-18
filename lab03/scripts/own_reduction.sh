@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu
 #SBATCH --mem-per-cpu=4gb
 #SBATCH --nodes 1
-#SBATCH --time=00:02:00
+#SBATCH --time=00:10:00
 #SBATCH --ntasks=1
 
 gcc ../src/own_reduction.c -o ../src/output/own_reduction.out -fopenmp -lm
